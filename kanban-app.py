@@ -11,7 +11,9 @@ from datetime import datetime
 
 # === Firebase Setup ===
 import os
-import json
+service_account_info = st.secrets["firebase_service_account"]
+cred = credentials.Certificate(service_account_info)
+
 
 if not firebase_admin._apps:
     service_account_info = json.loads(st.secrets["firebase_service_account"])
