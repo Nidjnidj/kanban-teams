@@ -10,8 +10,12 @@ import os
 from datetime import datetime
 
 # === Firebase Setup ===
+import os
+import json
+
 if not firebase_admin._apps:
-    cred = credentials.Certificate("serviceAccountKey.json")
+    service_account_info = json.loads(st.secrets["firebase_service_account"])
+    cred = credentials.Certificate(service_account_info)
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://kanban-teams-default-rtdb.firebaseio.com/'
     })
